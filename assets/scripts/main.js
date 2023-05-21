@@ -114,11 +114,12 @@ async function getRecipes() {
   //            resolve() method.
   var newarr = [];
   return new Promise(async (resolve, reject) => {
-    for (var i = 0; i < RECIPE_URLS.length; i++) {
       try {
+        for (var i = 0; i < RECIPE_URLS.length; i++) {
         const res = await fetch(RECIPE_URLS[i]);
         const data = await res.json();
         newarr.push(data);
+        }
         if (res.ok) {
           saveRecipesToStorage(newarr);
           resolve(newarr);
@@ -127,7 +128,6 @@ async function getRecipes() {
         console.error(e);
         reject(e);
       }
-    }
 
     // A10. TODO - Log any errors from catch using console.error
     // A11. TODO - Pass any errors to the Promise's reject() function
